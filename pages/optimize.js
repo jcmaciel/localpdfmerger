@@ -41,7 +41,7 @@ const Optimize = () => {
       },
       function (e) {
         if (e) {
-          // An error happened!
+          // Ocorreu um erro!
           throw e;
         }
         fs = promisifyAll(BFSRequire("fs"));
@@ -72,18 +72,17 @@ const Optimize = () => {
 
   const startOptimizingFiles = async () => {
     for (let i in files) {
-      //merge first two files into merge.pdf
-      const toastId = toast.loading(`Loading File ${files[i].path}`);
+      const toastId = toast.loading(`Carregando Arquivo ${files[i].path}`);
       try {
         await readFileAsync(files[i], files, setFiles);
       } catch (error) {
         console.log(error);
-        toast.error("There was an error loading your PDFs", {
+        toast.error("Houve um erro ao carregar seus PDFs", {
           id: toastId,
         });
       }
       let newFileName =
-        files[i].name.replace(/\.[^/.]+$/, "") + "-optimized.pdf";
+        files[i].name.replace(/\.[^/.]+$/, "") + "-otimizado.pdf";
       let exitcode = await runWasm([
         "pdfcpu.wasm",
         "optimize",
@@ -94,7 +93,7 @@ const Optimize = () => {
       ]);
 
       if (exitcode !== 0) {
-        toast.error("There was an error optimizing your PDFs", {
+        toast.error("Houve um erro ao otimizar seus PDFs", {
           id: toastId,
         });
         return;
@@ -102,7 +101,7 @@ const Optimize = () => {
       await fs.unlinkAsync(files[i].path);
       await downloadFile(fs, newFileName);
       await fs.unlinkAsync(newFileName);
-      toast.success("Your File ist Ready!", {
+      toast.success("Seu arquivo está pronto!", {
         id: toastId,
       });
     }
@@ -120,7 +119,7 @@ const Optimize = () => {
             disabled={isOptimizing || files.length <= 0}
             variant="outline"
           >
-            Optimize Files
+            Otimizar Arquivos
           </Button>
         </>
       );
@@ -132,7 +131,7 @@ const Optimize = () => {
           disabled={isOptimizing || files.length <= 0}
           onClick={optimizeFiles}
         >
-          Optimize Files
+          Otimizar Arquivos
         </Button>
       );
     }
@@ -141,21 +140,21 @@ const Optimize = () => {
   return (
     <>
       <NextSeo
-        title="Optimize PDF Files with Local PDF"
-        description="Local PDF allows you to optimize your PDF files to reduce their file size, without compromising on quality. Try our PDF optimizer tool today."
+        title="Otimizar Arquivos PDF com Local PDF"
+        description="Local PDF permite que você otimize seus arquivos PDF para reduzir o tamanho do arquivo, sem comprometer a qualidade. Experimente nossa ferramenta de otimização de PDF hoje."
         canonical="https://localpdf.tech/optimize"
         openGraph={{
           url: "https://localpdf.tech/optimize",
-          title: "Optimize PDF Files with Local PDF",
+          title: "Otimizar Arquivos PDF com Local PDF",
           description:
-            "Local PDF allows you to optimize your PDF files to reduce their file size, without compromising on quality. Try our PDF optimizer tool today.",
+            "Local PDF permite que você otimize seus arquivos PDF para reduzir o tamanho do arquivo, sem comprometer a qualidade. Experimente nossa ferramenta de otimização de PDF hoje.",
           type: "website",
           images: [
             {
               url: "https://raw.githubusercontent.com/julianfbeck/localpdfmerger/main/public/og-image-01.png",
               width: 1200,
               height: 630,
-              alt: "Optimize PDF Files with Local PDF",
+              alt: "Otimizar Arquivos PDF com Local PDF",
               type: "image/jpeg",
             },
           ],
@@ -179,15 +178,14 @@ const Optimize = () => {
         >
           <Center>
             <FeatureBlock
-              title={"Optimize PDF Files"}
+              title={"Otimizar Arquivos PDF"}
               text={
-                "Local PDF allows you to optimize your PDF files to reduce their file size, without compromising on quality. Try our PDF optimizer tool today."
+                "Local PDF permite que você otimize seus arquivos PDF para reduzir o tamanho do arquivo, sem comprometer a qualidade. Experimente nossa ferramenta de otimização de PDF hoje."
               }
             />
           </Center>
           <Text color={"gray.500"} px={[1, 10, 15]} pb={6}>
-            Get rid of redundant page resources like embedded fonts and images
-            and download optimized PDF files with better compression.
+            Elimine recursos de página redundantes, como fontes e imagens incorporadas, e baixe arquivos PDF otimizados com melhor compressão.
           </Text>
           <DropzoneField setFiles={setFiles} files={files}></DropzoneField>
           <Toaster />
@@ -216,7 +214,7 @@ const Optimize = () => {
             color="primary.800"
             opacity="0.6"
           >
-            {files.length === 0 ? "" : "You can drag and drop files to sort"}
+            {files.length === 0 ? "" : "Você pode arrastar e soltar arquivos para ordenar"}
           </Text>
           <Flex row={2}>
             <Spacer />
