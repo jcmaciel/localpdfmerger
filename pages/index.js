@@ -1,7 +1,8 @@
 import { NextSeo } from "next-seo";
 import Head from "next/head";
-import Hero from "../components/Hero";
 import LandingLayout from "../components/LandingLayout";
+import { Box, Flex, Button, Icon, Text } from "@chakra-ui/react";
+import { FaFilePdf, FaCompress, FaImages, FaWater } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -35,20 +36,49 @@ export default function Home() {
       />
 
       <LandingLayout>
-        <Hero
-          title="Local PDF Tools"
-          subtitle="Local PDF is a powerful PDF editing tool that uses WebAssembly technology to enable seamless editing directly in your web browser. With our platform, you can merge PDFs, optimize PDFs, and extract valuable information, such as images, from PDF files. Best of all, your files remain secure and confidential as they will not leave your system or be sent to another server. Trust Local PDF to be your go-to solution for all your PDF editing needs."
-          subtitle2="Get started now by merging, optimizing, or extracting PDFs in your browser."
-          image="/files.svg"
-          ctaText1="Start Merging PDFs"
-          ctaLink1="/merge"
-          ctaText2="Start Optimizing PDFs"
-          ctaLink2="/optimize"
-          ctaText3="Start Extracting Images, Text..."
-          ctaLink3="/extract"
-          ctaText4="Add Watermark"
-          ctaLink4="/watermark"
-        />
+        <Box textAlign="center" mb={8}>
+          <Text fontSize="2xl" fontWeight="bold">
+            Ferramentas úteis para PDF completamente grátis, super rápida, sem necessidade de upload. Privacidade garantida com seus arquivos.
+          </Text>
+        </Box>
+        <Flex justify="center" align="center" wrap="wrap" gap={4}>
+          <Button
+            as="a"
+            href="/merge"
+            size="lg"
+            leftIcon={<Icon as={FaFilePdf} w={8} h={8} />}
+            colorScheme="blue"
+          >
+            Mesclar PDFs
+          </Button>
+          <Button
+            as="a"
+            href="/optimize"
+            size="lg"
+            leftIcon={<Icon as={FaCompress} w={8} h={8} />}
+            colorScheme="green"
+          >
+            Otimizar PDFs
+          </Button>
+          <Button
+            as="a"
+            href="/extract"
+            size="lg"
+            leftIcon={<Icon as={FaImages} w={8} h={8} />}
+            colorScheme="purple"
+          >
+            Extrair Imagens
+          </Button>
+          <Button
+            as="a"
+            href="/watermark"
+            size="lg"
+            leftIcon={<Icon as={FaWater} w={8} h={8} />}
+            colorScheme="teal"
+          >
+            Adicionar Marca d'Água
+          </Button>
+        </Flex>
       </LandingLayout>
     </>
   );
