@@ -127,7 +127,7 @@ const Merge = () => {
       }
 
       let exitcode = await runWasm([
-        "pdfcpu.wasm",
+        "pdfcpu_v2.wasm",
         "merge",
         "-c",
         "disable",

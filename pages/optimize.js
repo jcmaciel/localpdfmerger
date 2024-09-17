@@ -84,7 +84,7 @@ const Optimize = () => {
       let newFileName =
         files[i].name.replace(/\.[^/.]+$/, "") + "-otimizado.pdf";
       let exitcode = await runWasm([
-        "pdfcpu.wasm",
+        "pdfcpu_v2.wasm",
         "optimize",
         "-c",
         "disable",

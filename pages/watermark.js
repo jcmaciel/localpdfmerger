@@ -84,7 +84,7 @@ const Watermark = () => {
         files[i].name.replace(/\.[^/.]+$/, "") + "-watermarked.pdf";
 
       let exitcode = await runWasm([
-        "pdfcpu.wasm",
+        "pdfcpu_v2.wasm",
         "stamp",
         "add",
         "-c",
